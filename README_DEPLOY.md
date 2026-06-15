@@ -1,48 +1,47 @@
-# AI Equity Multi-Page App V4
+# AI Equity Multi-Page V5 Fusion Terminal
 
-## Build
-`AI_EQUITY_MULTIPAGE_V4_DATA_ENGINE_2026_06_15`
+Build: `AI_EQUITY_MULTIPAGE_V5_FUSION_TERMINAL_2026_06_15`
 
-## What changed in V4
+## What this version is
 
-- Unified Fundamental Data Engine
-- Manual override for PE / EPS / margins / normalized growth on every company page
-- Fallback seed values when yfinance returns missing fundamentals
-- Transparent field-level data source: MANUAL / AUTO / SEED / DERIVED / MISSING
-- Home page does not load all fundamental data; each stock page loads details only when opened
-- No pandas_datareader / no FRED dependency
-- JSON download is safe-cleaned
+V5 combines three previously separated layers:
 
-## Deploy
+1. **V4 robust data engine**: Manual override > yfinance AUTO > V5 SEED > DERIVED > MISSING.
+2. **Network Control Tower**: network graph, scenario impact, role pie charts, relationship table, quick navigation buttons.
+3. **Detailed single-stock pages**: each stock keeps its own driver model, key metrics, valuation sources, risk dashboard, price/trend chart, JSON/CSV export.
 
-Main file path on Streamlit Cloud:
+## Files
 
 ```text
 streamlit_app.py
+ data_engine.py
+ requirements.txt
+ .streamlit/config.toml
+ pages/
+   00_TSM_2330_Foundry_Toll_Road.py
+   01_NVDA_AI_Infrastructure.py
+   02_MSFT_Cloud_AI.py
+   03_AVGO_Custom_Silicon.py
+   04_GOOGL_Search_Cloud_TPU.py
+   05_AMZN_AWS_AI.py
+   06_META_AI_Ads.py
+   07_MU_HBM_Memory_Cycle.py
+   08_AMD_AI_GPU_EPYC.py
 ```
 
-Local:
+## Run locally
 
 ```bash
 pip install -r requirements.txt
 streamlit run streamlit_app.py
 ```
 
-## GitHub structure
+## Streamlit Cloud
+
+Main file path:
 
 ```text
 streamlit_app.py
-requirements.txt
-data_engine.py
-.streamlit/config.toml
-pages/
-  00_TSM_2330_Foundry_Toll_Road.py
-  01_NVDA_AI_Infrastructure.py
-  02_MSFT_Cloud_AI.py
-  03_AVGO_Custom_Silicon.py
-  04_GOOGL_Search_Cloud_TPU.py
-  05_AMZN_AWS_AI.py
-  06_META_AI_Ads.py
-  07_MU_HBM_Memory_Cycle.py
-  08_AMD_AI_GPU_EPYC.py
 ```
+
+Upload the whole folder contents to the repo root. The `pages/` folder must be beside `streamlit_app.py`.
